@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   # POST /posts
   def create
-    post = CreatePostRequest.call(post_params: post_params, login: params[:login])
-    json_response(post.result, :created)
+    request = CreatePostRequest.call(post_params: post_params, login: params[:login])
+    json_response(request.result, :created)
   end
 
   private

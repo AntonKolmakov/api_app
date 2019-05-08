@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts, only: :create
+
+  resources :rates, only: :create
+
 end

@@ -11,6 +11,11 @@ class RatesController < ApplicationController
     json_response(request.result, :created)
   end
 
+  # GET rates/get_ips
+  def get_ips
+    request = GetIps.call
+    json_response(request.result, :created)
+  end
 
   private
 

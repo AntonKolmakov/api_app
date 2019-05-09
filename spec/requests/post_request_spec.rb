@@ -4,7 +4,10 @@ RSpec.describe 'Post API', type: :request do
 
   describe 'POST /posts' do
     context 'when the request is valid' do
-      let(:post_params) { {title: 'Learn Elm', description: 'set', login: 'unknown'} }
+      let(:post_params) { {title: 'Learn Elm',
+                           description: 'set',
+                           ip: '192.168.2.0',
+                           login: 'unknown'} }
 
       before { post '/posts', params: post_params }
 

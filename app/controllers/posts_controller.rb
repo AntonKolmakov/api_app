@@ -8,6 +8,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:title, :description)
+    params.permit(:title, :description, :ip)
   end
 end

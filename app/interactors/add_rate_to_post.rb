@@ -5,7 +5,6 @@ class AddRateToPost
     context.params = context.rate_params[:value]
   end
 
-
   def call
     if rate_exist?
       value = context.value = Rate.find_by(post_id: context.rate_params[:post_id]).value

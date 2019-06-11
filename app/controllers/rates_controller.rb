@@ -1,20 +1,20 @@
 class RatesController < ApplicationController
   # POST /rates
   def create
-    request = AddRateToPost.call(rate_params: rate_params)
-    json_response(request.result, :created)
+    request = AddRateToPost.new(rate_params).call
+    json_response(request, :created)
   end
 
   # GET rates/get_rate_posts
   def get_rate_posts
-    request = GetRatePosts.call(rate_params: rate_params)
-    json_response(request.result, :created)
+    request = GetRatePosts.new(rate_params).call
+    json_response(request, :created)
   end
 
   # GET rates/get_ips
   def get_ips
     request = GetIps.call
-    json_response(request.result, :created)
+    json_response(request, :created)
   end
 
   private

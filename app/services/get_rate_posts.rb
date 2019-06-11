@@ -1,12 +1,12 @@
 class GetRatePosts
-  include Interactor
+  def initialize(params)
+  	@rate_params = params
+  end
 
   def call
     result = Post
                  .select('posts.title', 'posts.description', 'rates.value')
                  .joins(:rate)
-                 .where('rates.value = ?', context.rate_params[:rate_value])
-
-    context.result = result
+                 .where('rates.value = ?', @rate_params[:rate_value])
   end
 end

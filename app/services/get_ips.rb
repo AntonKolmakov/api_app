@@ -1,18 +1,15 @@
 class GetIps
-  include Interactor
-
-  def call
-    find_ips
-    context.result = find_duplicates(find_ips)
+  def self.call
+    find_duplicates(find_ips)
   end
 
-  protected
+private
 
-  def find_ips
+  def self.find_ips
     arr = Post.select('posts.ip', 'users.login').joins(:user).map { |c| [c.ip.to_s, c.login] }
   end
 
-  def find_duplicates(arr)
+  def self.find_duplicates(arr)
     ips = {}
     arr.each do |element|
       if ips.has_key?(element[0])

@@ -2,23 +2,29 @@ class AddRateToPost
   def initialize(params)
     @rate_params = params
     @params_value = @rate_params[:value]
+    @post ||= Rate.find_by(post_id: @rate_params[:post_id])
   end
 
   def call
     if rate_exist?
       value = @post.value
-      result = Rate.update(value: ((@params_value).to_i.+(value)/2),
-                   post_id: @rate_params[:post_id])
+      @post.update(value: ((@params_value).to_i. + value))
+      avarage_of_post
     else
-      result = Rate.create!(value: (@params_value).to_i/2,
+      result = Rate.create!(value: (@params_value).to_i,
                    post_id: @rate_params[:post_id])
     end
-    result
   end
 
 private
 
   def rate_exist?
-    @post ||= Rate.find_by(post_id: @rate_params[:post_id])
+    @post.present?
+  end
+
+  def avarage_of_post
+    Rate.find_by(post_id: @rate_params[:post_id])
+    @post.value = @post.value/2
+    @post
   end
 end

@@ -23,7 +23,6 @@ private
   end
 
   def avarage_of_post
-    Rate.find_by(post_id: @rate_params[:post_id])
     @post.value = @post.value/2
     @post
   end
